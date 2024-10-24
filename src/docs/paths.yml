@@ -1,61 +1,70 @@
 paths:
-  /api/users:
-    get:
-      tags:
-      - Usuarios
-      summary: Obtener todos los usuarios
-      responses:
-        200:
-          description: Lista de usuarios obtenida exitosamente
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserListResponse'
-        500:
-          description: Error interno del servidor
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
+  /api/auth/register:
     post:
       tags:
-      - Usuarios
-      summary: Crear un nuevo usuario
+        - Users
+      summary: Registro de un nuevo usuario
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserCreateRequest'
+              $ref: '#/components/parameters/schemas/SchemaBodyUser'
         required: true
       responses:
-        201:
-          description: Usuario creado exitosamente
+        200:
+          description: Usuario registrado correctamente
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: '#/components/schema/Users/RespuestaRegistro'
         400:
-          description: Datos del usuario no válidos
+          description: Error en la validación de datos del usuario
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BadRequest'
+                $ref: '#/components/schema/Users/BadRequest'
         500:
           description: Error interno del servidor
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InternalServerError'
+                $ref: '#/components/schema/Users/InternalServerError'
+  
+  /api/users:
+    get:
+      tags:
+        - Users
+      summary: Obtener la lista de usuarios
+      responses:
+        200:
+          description: Lista de usuarios obtenida correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Users/RespuestaGetAll' # Asegúrate de que esta referencia exista
+        404:
+          description: No se encontraron usuarios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Users/NotFound'
+        500:
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Users/InternalServerError'
+
   /api/users/{id}:
     get:
       tags:
-      - Usuarios
-      summary: Obtener un usuario por ID
+        - Users
+      summary: Obtener usuario por ID
       parameters:
         - in: path
           name: id
-          required: true
-          description: ID del usuario a buscar
+          required: true  
+          description: ID del usuario
           schema:
             type: string
       responses:
@@ -64,16 +73,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: '#/components/schema/Users/RespuestaRegistro'
         404:
-          description: Usuario no encontrado
+          description: No se encuentra usuario con el ID
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFound'
+                $ref: '#/components/schema/Users/NotFound'
         500:
           description: Error interno del servidor
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InternalServerError'
+                $ref: '#/components/schema/Users/InternalServerError'

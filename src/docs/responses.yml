@@ -1,56 +1,50 @@
 components:
-  schemas:
-    UserResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID del usuario
-        first_name:
-          type: string
-          description: Primer nombre del usuario
-        last_name:
-          type: string
-          description: Apellido del usuario
-        email:
-          type: string
-          description: Correo electrónico del usuario
-        age:
-          type: integer
-          description: Edad del usuario
-        role:
-          type: string
-          description: Rol del usuario
-        createdAt:
-          type: string
-          format: date-time
-          description: Fecha de creación del usuario
-        updatedAt:
-          type: string
-          format: date-time
-          description: Fecha de actualización del usuario
-    UserListResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/UserResponse'
-    NotFound:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Mensaje de error indicando que el recurso no fue encontrado
-          example: Usuario no encontrado
-    BadRequest:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Mensaje de error indicando que los datos proporcionados no son válidos
-          example: Los datos del usuario no son válidos
-    InternalServerError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Mensaje de error del servidor
-          example: Error interno del servidor
+  schema:
+    Users:
+      RespuestaRegistro:
+        type: object
+        properties:
+          email:
+            type: string
+            description: Correo electrónico del usuario
+          role:
+            type: string
+            description: Rol del usuario
+          cart:
+            type: array
+            items:
+              type: string
+              description: ID del carrito
+        example:    
+          email: juan.perez@example.com
+          role: user
+          cart: []
+      NotFound:
+        type: object
+        properties:
+          msg:
+            type: string
+            description: Mensaje de error
+        example:
+          msg: No se encontró el usuario con el ID proporcionado
+      BadRequest:
+        type: object
+        properties:
+          msg:
+            type: string
+            description: Mensaje de error de validación
+        example:
+          msg: Error de validación en los datos del usuario
+      InternalServerError:
+        type: object
+        properties:
+          msg:
+            type: string
+            description: Mensaje de error interno
+        example:
+          msg: Error interno del servidor
+      RespuestaGetAll: # Definición añadida aquí
+        type: array
+        items:
+          $ref: '#/components/schema/Users/RespuestaRegistro'
+

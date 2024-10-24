@@ -1,35 +1,38 @@
 components:
-  schemas:
-    UserCreateRequest:
-      type: object
-      required:
-        - first_name
-        - last_name
-        - email
-        - age
-        - password
-      properties:
-        first_name:
-          type: string
-          description: Primer nombre del usuario
-          example: Juan
-        last_name:
-          type: string
-          description: Apellido del usuario
-          example: Pérez
-        email:
-          type: string
-          description: Correo electrónico del usuario
-          example: juan.perez@example.com
-        age:
-          type: integer
-          description: Edad del usuario
-          example: 30
-        password:
-          type: string
-          description: Contraseña del usuario
-          example: pass1234
-        role:
-          type: string
-          description: Rol del usuario (user o admin)
-          example: user
+  parameters:
+    schemas:
+      SchemaBodyUser:
+        type: object
+        required:
+          - first_name
+          - last_name
+          - email
+          - age
+          - password
+          - role
+        properties:
+          first_name:
+            type: string
+            description: Nombre del usuario
+            example: Juan
+          last_name:
+            type: string
+            description: Apellido del usuario
+            example: Pérez
+          email:
+            type: string
+            description: Correo electrónico del usuario
+            example: juan.perez@example.com
+          age:
+            type: integer
+            description: Edad del usuario
+            example: 30
+          password:
+            type: string
+            description: Contraseña del usuario
+            example: password123
+          role:
+            type: string
+            description: Rol del usuario
+            example: user
+

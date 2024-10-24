@@ -1,0 +1,56 @@
+components:
+  schemas:
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID del usuario
+        first_name:
+          type: string
+          description: Primer nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        email:
+          type: string
+          description: Correo electrónico del usuario
+        age:
+          type: integer
+          description: Edad del usuario
+        role:
+          type: string
+          description: Rol del usuario
+        createdAt:
+          type: string
+          format: date-time
+          description: Fecha de creación del usuario
+        updatedAt:
+          type: string
+          format: date-time
+          description: Fecha de actualización del usuario
+    UserListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserResponse'
+    NotFound:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensaje de error indicando que el recurso no fue encontrado
+          example: Usuario no encontrado
+    BadRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensaje de error indicando que los datos proporcionados no son válidos
+          example: Los datos del usuario no son válidos
+    InternalServerError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensaje de error del servidor
+          example: Error interno del servidor

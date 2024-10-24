@@ -103,56 +103,6 @@ export const clearCart = async (cartId) => {
   }
 };
 
-/* export const finalizarCompra = async (cartId, user) => {
-  try {
-    if (!user || !user._id) {
-      throw new Error('Usuario no válido o no autenticado');
-    }
-
-    const cart = await CartModel.findById(cartId).populate("products.product");
-
-    if (!cart) {
-      throw new Error('Carrito no encontrado');
-    }
-
-    for (let item of cart.products) {
-      const { product, quantity } = item;
-
-      if (!product || !product._id) {
-        throw new Error(`Producto no encontrado en el carrito`);
-      }
-
-      if (product.stock == null || isNaN(product.stock)) {
-        throw new Error(`El producto ${product.name || 'desconocido'} tiene un valor de stock inválido`);
-      }
-
-      if (product.stock < quantity) {
-        throw new Error(`El producto ${product.name} no tiene stock suficiente`);
-      }
-
-      const newStock = product.stock - quantity;
-
-      await productDao.update(product._id, { stock: newStock });
-    }
-
-    // Crear ticket de compra
-    const ticket = await createTicket({
-      code: uuidv4(),
-      purchase_datetime: new Date(),
-      amount: cart.products.reduce(
-        (acc, curr) => acc + curr.quantity * curr.product.price,
-        0
-      ),
-      purchaser: user._id,
-    });
-
-    return ticket;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-}; */
-
 export const finalizarCompra = async (cartId, user) => {
   try {
     if (!user || !user._id) {

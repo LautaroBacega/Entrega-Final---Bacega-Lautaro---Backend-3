@@ -6,7 +6,6 @@ import bcrypt from "bcrypt";
 
 const router = Router();
 
-
 router.get("/mockingusers", async (req, res) => {
     try {
         const mockUsers = generateMockUsers(50);

@@ -2,7 +2,6 @@ import TicketDao from "../Daos/ticket.dao.js";
 
 const ticketDao = new TicketDao();
 
-
 export const getTickets = async () => {
     try {
         return await ticketDao.getTickets();
@@ -18,4 +17,3 @@ export const createTicket = async (ticket) => {
         console.log(error);
     }
 }
-

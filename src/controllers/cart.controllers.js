@@ -128,4 +128,3 @@ export const finalizarCompra = async (req, res) => {
         res.status(500).json({ error: "Ocurrió un error al finalizar la compra" });
     }
 };
-

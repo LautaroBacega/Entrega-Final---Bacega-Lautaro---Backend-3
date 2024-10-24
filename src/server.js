@@ -12,9 +12,18 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import { initMongoDB } from './db/database.js';
 import 'dotenv/config'
 import mocksRouter from "./routes/mocks.router.js";
+import swaggerUI from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+import { info } from './docs/info.js';
+
 
 const app = express();
 const PORT = 5000;
+
+// Swagger
+const specs = swaggerJSDoc(info);
+
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs));
 
 // Express configuracion
 app.use(express.json());

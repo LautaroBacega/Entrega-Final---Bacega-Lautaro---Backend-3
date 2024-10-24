@@ -4,12 +4,12 @@ services:
     container_name: mongo_coder
     image: mongo:latest
     ports:
-      - 5000:27017
+      - 5002:27017
   
   api:
     container_name: server_coder
     build: .
     ports:
-      - 5001:5000 
+      - 5003:5000 
     environment:
       MONGO_URI: mongodb://mongo_db:27017/coder69910

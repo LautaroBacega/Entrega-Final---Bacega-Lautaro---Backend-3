@@ -4,6 +4,7 @@ docker pull lautarobacega/server-coder:1.0.0
 
 
 
+
 ---------------------------------- Proyecto Final Backend 2 ----------------------------------
 1. Creamos un usuario user y/o admin: 
   POST localhost:5000/api/auth/register

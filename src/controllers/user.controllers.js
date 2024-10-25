@@ -4,7 +4,7 @@ export const createUser = async (req, res, next) => {
     try {
         const { cant } = req.query;
         const response = await userService.createUsersMock(cant);
-        res.status(200).json(response);
+        res.status(201).json(response);
     } catch (error) {
         next(error);
     }
